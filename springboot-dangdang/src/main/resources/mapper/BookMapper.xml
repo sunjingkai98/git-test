@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.intouch.dao.BookMapper">
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+  <resultMap id="BaseResultMap" type="com.intouch.domain.Book">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="publishing" jdbcType="VARCHAR" property="publishing" />
+    <result column="publish_time" jdbcType="BIGINT" property="publishTime" />
+    <result column="word_number" jdbcType="VARCHAR" property="wordNumber" />
+    <result column="which_edtion" jdbcType="VARCHAR" property="whichEdtion" />
+    <result column="total_page" jdbcType="VARCHAR" property="totalPage" />
+    <result column="print_time" jdbcType="INTEGER" property="printTime" />
+    <result column="print_number" jdbcType="VARCHAR" property="printNumber" />
+    <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.intouch.domain.BookWithBLOBs">
+    <result column="author_summary" jdbcType="LONGVARCHAR" property="authorSummary" />
+    <result column="catalogue" jdbcType="LONGVARCHAR" property="catalogue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, author, publishing, publish_time, word_number, which_edtion, total_page, print_time, 
+    print_number, isbn
+  </sql>
+  <sql id="Blob_Column_List">
+    author_summary, catalogue
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from d_book
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from d_book
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.intouch.domain.BookWithBLOBs">
+    insert into d_book (id, author, publishing, 
+      publish_time, word_number, which_edtion, 
+      total_page, print_time, print_number, 
+      isbn, author_summary, catalogue
+      )
+    values (#{id,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{publishing,jdbcType=VARCHAR}, 
+      #{publishTime,jdbcType=BIGINT}, #{wordNumber,jdbcType=VARCHAR}, #{whichEdtion,jdbcType=VARCHAR}, 
+      #{totalPage,jdbcType=VARCHAR}, #{printTime,jdbcType=INTEGER}, #{printNumber,jdbcType=VARCHAR}, 
+      #{isbn,jdbcType=VARCHAR}, #{authorSummary,jdbcType=LONGVARCHAR}, #{catalogue,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.intouch.domain.BookWithBLOBs">
+    insert into d_book
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="publishing != null">
+        publishing,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="wordNumber != null">
+        word_number,
+      </if>
+      <if test="whichEdtion != null">
+        which_edtion,
+      </if>
+      <if test="totalPage != null">
+        total_page,
+      </if>
+      <if test="printTime != null">
+        print_time,
+      </if>
+      <if test="printNumber != null">
+        print_number,
+      </if>
+      <if test="isbn != null">
+        isbn,
+      </if>
+      <if test="authorSummary != null">
+        author_summary,
+      </if>
+      <if test="catalogue != null">
+        catalogue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publishing != null">
+        #{publishing,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=BIGINT},
+      </if>
+      <if test="wordNumber != null">
+        #{wordNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="whichEdtion != null">
+        #{whichEdtion,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPage != null">
+        #{totalPage,jdbcType=VARCHAR},
+      </if>
+      <if test="printTime != null">
+        #{printTime,jdbcType=INTEGER},
+      </if>
+      <if test="printNumber != null">
+        #{printNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null">
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="authorSummary != null">
+        #{authorSummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="catalogue != null">
+        #{catalogue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.intouch.domain.BookWithBLOBs">
+    update d_book
+    <set>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publishing != null">
+        publishing = #{publishing,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=BIGINT},
+      </if>
+      <if test="wordNumber != null">
+        word_number = #{wordNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="whichEdtion != null">
+        which_edtion = #{whichEdtion,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPage != null">
+        total_page = #{totalPage,jdbcType=VARCHAR},
+      </if>
+      <if test="printTime != null">
+        print_time = #{printTime,jdbcType=INTEGER},
+      </if>
+      <if test="printNumber != null">
+        print_number = #{printNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null">
+        isbn = #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="authorSummary != null">
+        author_summary = #{authorSummary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="catalogue != null">
+        catalogue = #{catalogue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.intouch.domain.BookWithBLOBs">
+    update d_book
+    set author = #{author,jdbcType=VARCHAR},
+      publishing = #{publishing,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=BIGINT},
+      word_number = #{wordNumber,jdbcType=VARCHAR},
+      which_edtion = #{whichEdtion,jdbcType=VARCHAR},
+      total_page = #{totalPage,jdbcType=VARCHAR},
+      print_time = #{printTime,jdbcType=INTEGER},
+      print_number = #{printNumber,jdbcType=VARCHAR},
+      isbn = #{isbn,jdbcType=VARCHAR},
+      author_summary = #{authorSummary,jdbcType=LONGVARCHAR},
+      catalogue = #{catalogue,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.intouch.domain.Book">
+    update d_book
+    set author = #{author,jdbcType=VARCHAR},
+      publishing = #{publishing,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=BIGINT},
+      word_number = #{wordNumber,jdbcType=VARCHAR},
+      which_edtion = #{whichEdtion,jdbcType=VARCHAR},
+      total_page = #{totalPage,jdbcType=VARCHAR},
+      print_time = #{printTime,jdbcType=INTEGER},
+      print_number = #{printNumber,jdbcType=VARCHAR},
+      isbn = #{isbn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.intouch.dao.ProductItemMapper">
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+  <resultMap id="BaseResultMap" type="com.intouch.domain.ProductItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="delflag" jdbcType="CHAR" property="delflag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, quantity, user_id, product_id, delflag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from d_product_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from d_product_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.intouch.domain.ProductItem">
+    insert into d_product_item (id, quantity, user_id, 
+      product_id, delflag)
+    values (#{id,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{delflag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.intouch.domain.ProductItem">
+    insert into d_product_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.intouch.domain.ProductItem">
+    update d_product_item
+    <set>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.intouch.domain.ProductItem">
+    update d_product_item
+    set quantity = #{quantity,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      delflag = #{delflag,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--********************************************************************************************-->
+  <insert id="insertToItemByBookId">
+    insert into d_product_item
+    values(default ,1,#{uId},#{bId},'N');
+  </insert>
+  <select id="selectBookByBookId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    d_product_item
+    WHERE
+    product_id = #{bId}
+    AND user_id = #{uId}
+  </select>
+  <update id="updateBookInfoByBookId" >
+    update d_product_item
+    set
+        quantity = #{amount}
+    where user_id = #{uId} and product_id = #{bId}
+  </update>
+  <select id="selectBookAmountByBookId" resultType="int">
+    select
+      SUM(quantity)
+    from d_product_item
+    where user_id = #{uId} and product_id = #{bId}
+    GROUP BY product_id
+  </select>
+  <delete id="deleteBookByBookId" >
+    DELETE
+    FROM
+        d_product_item
+    WHERE
+        user_id = #{uId}
+    AND product_id = #{bId}
+  </delete>
+  <delete id="deleteBooksByBookIdList" >
+    DELETE
+    FROM
+        d_product_item
+    WHERE
+        user_id = #{uId}
+    AND product_id IN
+      <foreach collection="list" item="pro" open="(" close=")" separator=",">
+        #{pro}
+      </foreach>
+  </delete>
+</mapper>

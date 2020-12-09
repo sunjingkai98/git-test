@@ -1,0 +1,197 @@
+#line{
+    width: 100%;
+    border-bottom: 4px solid #ff2832;
+    height: 100px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+#head1{
+     height: 100px;
+     width: 100%;
+    text-align: center;
+ }
+#head_ads{
+    margin-top: 20px;
+    width: 60%;
+}
+#head2{
+    width: 100%;
+    border-bottom: 4px solid #ff2832;
+    height: 100px;
+}
+#head2_1{
+    height: 100px;
+    width: 60%;
+    margin: 0 auto;
+}
+#head_logodiv{
+    float: left;
+    margin: 0 auto;
+    width: 30%;
+}
+#lead{
+    margin-top: 4px;
+}
+#head_a{
+    text-decoration: none;
+    color: black;
+}
+#head_a:hover{
+    color: #ff2832;
+}
+#head_span{
+    font-weight: bold;
+    color: #ff2832;
+}
+#head_logo{
+    width: 250px;
+    height: 49px;
+    margin-top: 20px;
+}
+#shopping_procedure{
+    margin-top: 25px;
+    display: inline-block;
+    width: 70%;
+    height: 70px;
+    background: url(../images/procedure_bg.png) 0 0 no-repeat;
+    font: bold 14px/36px "Microsoft Yahei";
+    color: #646464;
+}
+#current{
+    color: #fff;
+    width: 206px;
+}
+#shopping_procedure span{
+    display: inline-block;
+    text-align: center;
+    width: 205px;
+    height: 50px;
+}
+#content{
+    width: 60%;
+    height: 800px;
+    margin: 0 auto;
+}
+#table{
+    border-collapse:collapse;
+    margin: 0 auto;
+
+    margin-top: 20px;
+    width: 100%;
+
+}
+#table td{
+    height: 150px;
+}
+#check{
+    text-align: center;
+    width: 10%;
+}
+#name{
+
+    width: 50%;
+}
+#name_img{
+    margin-right: 10px;
+    display: inline-block;
+    float: left;
+}
+#name1{
+    font-size: 15px;
+
+}
+#des{
+    font-size: 12px;
+}
+#price{
+    text-align: center;
+     width:10%;
+ }
+#quan{
+    text-align: center;
+    width:10%;
+}
+#quaninp{
+     text-align:center;
+     width: 30px;
+     height: 20px;
+}
+#quaninp:focus{
+    outline: none;
+}
+#am{
+    text-align: center;
+    width:10%;
+}
+#del{
+    text-align: center;
+    width:10%;
+}
+#del1{
+    text-decoration: none;
+    color: black;
+}
+#del1:hover{
+    text-decoration: underline;
+}
+#delmsg{
+    color: #ff2832;
+    font-size: 10px;
+}
+#content_foot{
+
+    width: 100%;
+    height: 100px;
+    background: url(../images/shopping_total.png) 0 0 no-repeat;
+}
+#foot1{
+    line-height: 50px;
+    float: left;
+    width: 50%;
+    height: 100px;
+}
+#foot1_a{
+    margin-top: 5px;
+    margin-left: 50px;
+}
+#select{
+    color:#ff2832 ;
+}
+#pidel{
+text-decoration: none;
+    color: black;
+}
+#pidel:hover{
+    text-decoration: underline;
+}
+#foot1_span{
+    margin-left: 15px;
+}
+#foot2{
+    text-align: right;
+    margin-top: 15px;
+    line-height: 50px;
+    float: left;
+    width: 47%;
+    height: 100px;
+}
+#payamount{
+    color:#ff2832 ;
+    margin-right: 15px;
+}
+#total_btn{
+    text-decoration: none;
+    float: right;
+    display: block;
+    width: 116px;
+    height: 38px;
+    font: bold 18px/38px "Microsoft Yahei";
+    color: #fff;
+    background-color: #ff2832;
+    border-radius: 2px;
+    text-align: center;
+    margin-top: 4px;
+}
+

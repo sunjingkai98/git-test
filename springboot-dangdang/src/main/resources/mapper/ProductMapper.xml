@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.intouch.dao.ProductMapper">
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+  <resultMap id="BaseResultMap" type="com.intouch.domain.Product">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="add_time" jdbcType="BIGINT" property="addTime" />
+    <result column="fixed_price" jdbcType="DOUBLE" property="fixedPrice" />
+    <result column="dang_price" jdbcType="DOUBLE" property="dangPrice" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="has_deleted" jdbcType="INTEGER" property="hasDeleted" />
+    <result column="product_pic" jdbcType="VARCHAR" property="productPic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_name, description, add_time, fixed_price, dang_price, keywords, has_deleted, 
+    product_pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from d_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from d_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.intouch.domain.Product">
+    insert into d_product (id, product_name, description, 
+      add_time, fixed_price, dang_price, 
+      keywords, has_deleted, product_pic
+      )
+    values (#{id,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=BIGINT}, #{fixedPrice,jdbcType=DOUBLE}, #{dangPrice,jdbcType=DOUBLE}, 
+      #{keywords,jdbcType=VARCHAR}, #{hasDeleted,jdbcType=INTEGER}, #{productPic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.intouch.domain.Product">
+    insert into d_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="fixedPrice != null">
+        fixed_price,
+      </if>
+      <if test="dangPrice != null">
+        dang_price,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="hasDeleted != null">
+        has_deleted,
+      </if>
+      <if test="productPic != null">
+        product_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="fixedPrice != null">
+        #{fixedPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="dangPrice != null">
+        #{dangPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDeleted != null">
+        #{hasDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="productPic != null">
+        #{productPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.intouch.domain.Product">
+    update d_product
+    <set>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=BIGINT},
+      </if>
+      <if test="fixedPrice != null">
+        fixed_price = #{fixedPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="dangPrice != null">
+        dang_price = #{dangPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="hasDeleted != null">
+        has_deleted = #{hasDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="productPic != null">
+        product_pic = #{productPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.intouch.domain.Product">
+    update d_product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=BIGINT},
+      fixed_price = #{fixedPrice,jdbcType=DOUBLE},
+      dang_price = #{dangPrice,jdbcType=DOUBLE},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      has_deleted = #{hasDeleted,jdbcType=INTEGER},
+      product_pic = #{productPic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--**************************************************************************************-->
+  <resultMap id="AllProductsAndBooks" type="com.intouch.domain.Product" extends="BaseResultMap">
+    <collection property="books" javaType="list" ofType="com.intouch.domain.Book">
+      <id column="bid" property="id"/>
+      <result column="bauthor" property="author"/>
+      <result column="bpublishing" property="publishing"/>
+      <result column="bpublish_time" property="publishTime"/>
+    </collection>
+  </resultMap>
+  <select id="selectAllProductsByParentId" parameterType="int" resultMap="AllProductsAndBooks">
+    SELECT
+        p.*,
+        b.id bid,
+        b.author bauthor,
+        b.publishing bpublishing,
+        b.publish_time bpublish_time
+    FROM
+        d_category c
+    LEFT JOIN d_category sc ON sc.parent_id = c.id
+    LEFT JOIN d_category_product cp ON cp.cat_id = sc.id
+     JOIN d_product p ON p.id = cp.product_id
+     JOIN d_book b ON b.id = p.id
+    WHERE
+        c.id = #{parentId}
+    limit #{beginIndex},#{pageSize}
+  </select>
+  <select id="selectAllProductsByRelatedId" parameterType="int" resultMap="AllProductsAndBooks">
+    SELECT
+        p.*,
+        b.id bid,
+        b.author bauthor,
+        b.publishing bpublishing,
+        b.publish_time bpublish_time
+    FROM
+        d_category c
+    LEFT JOIN d_category sc ON sc.parent_id = c.id
+    LEFT JOIN d_category_product cp ON cp.cat_id = sc.id
+     JOIN d_product p ON p.id = cp.product_id
+     JOIN d_book b ON b.id = p.id
+    WHERE
+        c.parent_id = 1 and sc.id = #{relatedId}
+    limit #{beginIndex},#{pageSize}
+  </select>
+  <select id="sellectNewestBooks" parameterType="int" resultMap="AllProductsAndBooks">
+      SELECT
+          p.*,
+          b.id bid,
+          b.author bauthor,
+          b.publishing bpublishing,
+          b.publish_time bpublish_time
+      FROM
+          d_category c
+      LEFT JOIN d_category sc ON sc.parent_id = c.id
+      LEFT JOIN d_category_product cp ON cp.cat_id = sc.id
+      JOIN d_product p ON p.id = cp.product_id
+      JOIN d_book b ON b.id = p.id
+      where c.parent_id = 1
+      ORDER BY p.add_time desc
+      limit #{amount}
+  </select>
+  <select id="selectProductsByPublishing" parameterType="string" resultMap="AllProductsAndBooks">
+      SELECT
+        p.*,
+        b.id bid,
+        b.author bauthor,
+        b.publishing bpublishing,
+        b.publish_time bpublish_time
+      FROM
+          d_category c
+      LEFT JOIN d_category sc ON sc.parent_id = c.id
+      LEFT JOIN d_category_product cp ON cp.cat_id = sc.id
+      JOIN d_product p ON p.id = cp.product_id
+      JOIN d_book b ON b.id = p.id
+      WHERE
+          c.parent_id = 1
+      AND b.publishing = #{publishing}
+      LIMIT 2
+  </select>
+  <resultMap id="TopSalesBooks" type="com.intouch.domain.Product" extends="BaseResultMap">
+    <collection property="books" javaType="list" ofType="com.intouch.domain.Book">
+      <id column="bid" property="id"/>
+      <result column="bauthor" property="author"/>
+      <result column="bpublishing" property="publishing"/>
+      <result column="bpublish_time" property="publishTime"/>
+      <result column="amount" property="sales"/>
+    </collection>
+  </resultMap>
+  <select id="selectTopSalesBooks" parameterType="int" resultMap="TopSalesBooks">
+    select
+        p.*,
+        b.id bid,
+        b.author bauthor,
+        b.publishing bpublishing,
+        b.publish_time bpublish_time,
+        SUM(i.product_num) amount
+    from d_item i
+    LEFT JOIN d_product p on p.id = i.product_id
+    left join d_book b on b.id = p.id
+    GROUP BY product_name
+    ORDER BY SUM(i.product_num) desc
+    limit #{amount}
+  </select>
+  <resultMap id="BooksAccordingToUser" type="com.intouch.domain.Product" extends="BaseResultMap">
+    <result column="quantity" property="quantity"/>
+  </resultMap>
+  <select id="selectBooksAccordingToUser" parameterType="int" resultMap="BooksAccordingToUser">
+        select
+            p.*,
+            SUM(pi.quantity) quantity
+        FROM
+            d_product p
+        left join d_product_item pi on pi.product_id = p.id
+        where pi.user_id = #{userId}
+        GROUP BY p.product_name
+    </select>
+  <select id="getRelatedCatCountsById" resultType="int" parameterType="int">
+    SELECT
+				COUNT(product_id)
+    FROM
+        d_category c
+    LEFT JOIN d_category sc ON sc.parent_id = c.id
+    LEFT JOIN d_category_product cp ON cp.cat_id = sc.id
+     JOIN d_product p ON p.id = cp.product_id
+     JOIN d_book b ON b.id = p.id
+    where c.parent_id = 1 and sc.id = #{relatedId}
+GROUP BY sc.id
+  </select>
+</mapper>

@@ -1,0 +1,163 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#head{
+    margin: 0 auto;
+    width: 80%;
+    height: 80px;
+}
+#content{
+    margin: 30px auto;
+    width: 80%;
+    height:600px;
+
+}
+#img{
+    height: 100%;
+    width:50%;
+    float: left;
+}
+#form{
+
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 30%;
+    height:80%;
+        text-align: center;
+    float: right;
+    border: 2px solid darkgray;
+}
+/*表单标题*/
+#form_title{
+    font-size: 20px;
+    font-family: 微软雅黑;
+    margin-top: 40px;
+    margin-left: 20px;
+    text-align: left;
+    width: 80%;
+}
+#email{/*邮箱div*/
+    margin-left: 20px;
+    margin-top: 50px;
+    width: 300px;
+    height:30px;
+    border: 1px solid grey;
+}
+
+#email_input{/*邮箱输入框*/
+    width: 200px;
+    height:28px;
+    float: left;
+    border:none;
+}
+#email_input:focus{
+    outline: none;
+}
+#user{
+/*邮箱输入图片*/
+    width: 30px;
+    height: 28px;
+    float: left;
+}
+#email_error{
+    margin-left: 20px;
+    margin-top: 10px;
+    color: red;
+    width: 300px;
+    height: 20px;
+}
+
+/*密码div*/
+#pwd{
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 300px;
+    height:30px;
+    border: 1px solid grey;
+}
+#pwd_input{
+    width: 200px;
+    height:28px;
+    float: left;
+    border:none;
+}
+#pwd_input:focus{
+    outline: none;
+}
+#pwd_img{
+    width: 30px;
+    height: 28px;
+    float: left;
+}
+#pwd_error{
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: red;
+    width: 300px;
+    height: 20px;
+}
+#code{
+    text-align: left;
+    margin-left: 20px;
+    height: 80px;
+    width: 300px;
+    margin-top: 20px;
+}
+#code_img{
+    display: inline-block;
+    float: right;
+    height: 35px;
+    width: 110px;
+}
+#code_input{
+    width: 150px;
+    height:20px;
+    float: left;
+    margin-top: 10px;
+}
+#code_input:focus{
+    outline: none;
+}
+#code_span{
+
+}
+#code_a{
+    float: right;
+    color: cornflowerblue;
+    text-decoration: none;
+}
+#code_a:hover{
+    text-decoration: underline;
+}
+#button{
+    margin-left: 20px;
+    margin-top: 20px;
+    height: 40px;
+    width: 300px;
+    background-color: aquamarine;
+}
+#submit{
+    height: 40px;
+    width: 300px;
+    background-color: rgb(240,25,35);
+    border: none;
+    color:white;
+    font-size: 20px;
+}
+#gotoRe{
+    margin-left: 20px;
+    margin-top: 10px;
+
+    width: 300px;
+    height: 20px;
+    font-size: 10px;
+    text-align: right;
+}
+#reg{
+    float: right;
+    color: gray;
+    text-decoration: none;
+}
+

@@ -1,0 +1,139 @@
+body{
+    margin: 0px;
+    padding:0px;
+
+}
+#head_login{
+    margin:0 auto;
+    width: 80%;
+    background-color: rgb(249,249,249);
+    height: 40px;
+    line-height:40px ;
+    text-align: right;
+}
+#head_img{
+    position: relative;
+    top: 15%;
+}
+#login{
+    color: red;
+    text-decoration: none;
+}
+#vip:hover{
+    color:red;
+}
+#buy1:hover{
+    color:red;
+}
+#logout:hover{
+    color:red;
+}
+#vip{
+     color: black;
+     text-decoration: none;
+ }
+#logout{
+    color: black;
+    text-decoration: none;
+}
+#buy1{
+    color: black;
+    text-decoration: none;
+}
+#head{
+    margin:0 auto;
+    width: 80%;
+    height:100px;
+}
+
+#middle{
+    margin:10px auto;
+    width: 80%;
+    height:900px;
+
+}
+#content{
+    width:25%;
+}
+#content1{
+
+    font-weight: bold;
+    color: orangered;
+}
+#left{
+    padding: 0px;
+    float: left;
+    width:25%;
+    height:97%;
+    border: 1px solid green;
+}
+#cat:hover{
+    color: orange;
+}
+#left_head{
+    text-align: center;
+    margin-top: 0;
+    width:100%;
+    height:40%;
+    font-weight: bold;
+    font-size: 25px;
+    background-color: green;
+}
+#middle #middle1{
+    margin-top: 0;
+    float: left;
+    width:74%;
+    height:100%;
+}
+
+#foot{
+    margin:10px auto;
+    width: 80%;
+    height:100px;
+    border:1px solid yellow;
+
+}
+ul{
+    margin-left: 0px;
+}
+#li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 0px;
+}
+#li1{
+    list-style: none;
+}
+#cat{
+    color: black;
+    text-decoration: none;
+}
+#title{
+      color: black;
+      text-decoration: none;
+}
+#next{
+    color: white;
+    text-decoration: none;
+}
+#last{
+     color: white;
+     text-decoration: none;
+ }
+#content2{
+    color: black;
+    text-decoration: none;
+}
+#content2:hover{
+    color: orange;
+    text-decoration:underline;
+}
+#proName{
+    color: black;
+    text-decoration: none;
+}
+#proName:hover{
+    text-decoration:underline;
+}
+
+
